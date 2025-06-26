@@ -122,4 +122,22 @@ public class ScoreManager : MonoBehaviour {
             scoreText.text = "Score: " + score.ToString("D5");
     }
 }
+EnemySpawner.cs
+using UnityEngine;
+
+public class EnemySpawner : MonoBehaviour {
+    public GameObject[] enemyPrefabs; // Musuh bisa divariasikan
+    public Transform[] spawnPoints;
+
+    void Start() {
+        SpawnWave();
+    }
+
+    public void SpawnWave() {
+        for (int i = 0; i < spawnPoints.Length; i++) {
+            int randomIndex = Random.Range(0, enemyPrefabs.Length);
+            Instantiate(enemyPrefabs[randomIndex], spawnPoints[i].position, spawnPoints[i].rotation);
+        }
+    }
+}
 
